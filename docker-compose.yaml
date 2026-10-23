@@ -1,0 +1,8 @@
+services:
+  php:
+    build: .
+    volumes:
+      - .:/var/www/html
+      - /var/log/apache2:/var/log/apache2
+    ports:
+      - "127.0.0.1:80:80"
