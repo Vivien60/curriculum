@@ -52,3 +52,7 @@
 /.web-server-pid
 /cv.pdf
 /static/
+/.env.dev
+/storage/
+/.env
+/.claude/
