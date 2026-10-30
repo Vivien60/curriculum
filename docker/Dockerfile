@@ -1,4 +1,4 @@
-FROM php:8.5-apache
+FROM php:8.5-apache AS apache-php
 
 # PHP
 RUN apt-get update && apt-get upgrade -y
@@ -9,3 +9,4 @@ RUN apt-get install libzip-dev -y && docker-php-ext-install zip
 RUN a2enmod rewrite
 
 EXPOSE 80
+EXPOSE 8080

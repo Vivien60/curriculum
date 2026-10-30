@@ -1,0 +1,21 @@
+name: curriculum
+
+services:
+  cv:
+    build:
+      context : .
+      target: apache-php
+    networks:
+      - web
+    volumes:
+      - ../app:/var/www/html
+      - /var/log/apache2:/var/log/apache2
+      - type: bind
+        source: ${CV_PDF_PATH}
+        target: /var/www/html/cv.pdf
+        read_only: true
+
+networks:
+  web:
+    name: web
+    external: true
