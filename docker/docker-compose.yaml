@@ -1,12 +1,12 @@
 name: curriculum
 
 services:
-  appcv:
+  cv:
     build:
       context : .
       target: apache-php
     networks:
-      - proxy
+      - web
     volumes:
       - ../app:/var/www/html
       - /var/log/apache2:/var/log/apache2
@@ -14,10 +14,8 @@ services:
         source: ${CV_PDF_PATH}
         target: /var/www/html/cv.pdf
         read_only: true
-    labels:
-      traefik.http.routers.appcv.rule: Host(`cv.localhost`)
 
 networks:
-  proxy:
-    name: proxy
+  web:
+    name: web
     external: true
