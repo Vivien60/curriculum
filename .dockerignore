@@ -1,0 +1,8 @@
+# Tout exclure par défaut
+*
+
+# Autoriser uniquement le code de l'application
+!app/
+
+# Le PDF est monté en volume, il ne doit pas entrer dans l'image
+app/cv.pdf

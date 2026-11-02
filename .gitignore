@@ -54,6 +54,6 @@
 /static/
 /.env.dev
 /storage/
-/.env
 /.claude/
 /traefik/
+/.env.local
