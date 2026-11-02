@@ -10,3 +10,11 @@ RUN a2enmod rewrite
 
 EXPOSE 80
 EXPOSE 8080
+EXPOSE 443
+
+# étape dev : part de l'étape 1
+FROM apache-php AS dev
+
+# étape prod : part de l'étape 1
+FROM apache-php AS prod
+COPY ./app /var/www/html/

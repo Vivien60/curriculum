@@ -3,17 +3,19 @@ name: curriculum
 services:
   cv:
     build:
-      context : .
-      target: apache-php
+      context : ..
+      dockerfile: docker/Dockerfile
+      target: ${ENV:-prod}
     networks:
       - web
     volumes:
-      - ../app:/var/www/html
       - /var/log/apache2:/var/log/apache2
       - type: bind
         source: ${CV_PDF_PATH}
         target: /var/www/html/cv.pdf
         read_only: true
+    labels:
+      env: ${ENV:-prod}
 
 networks:
   web:

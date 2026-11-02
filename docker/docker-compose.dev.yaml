@@ -1,0 +1,7 @@
+name: curriculum-dev
+
+services:
+  cv:
+    volumes:
+      - ../app:/var/www/html
+
