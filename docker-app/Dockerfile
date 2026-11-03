@@ -17,4 +17,4 @@ FROM apache-php AS dev
 
 # étape prod : part de l'étape 1
 FROM apache-php AS prod
-COPY ./app /var/www/html/
+COPY ./ /var/www/html/

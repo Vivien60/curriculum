@@ -57,3 +57,7 @@
 /.claude/
 /traefik/
 /.env.local
+
+
+.env.*.local
+.env.local
