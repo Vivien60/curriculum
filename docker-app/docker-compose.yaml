@@ -3,17 +3,16 @@ name: curriculum
 services:
   cv:
     build:
-      context : ..
-      dockerfile: docker/Dockerfile
+      context : ../app
+      dockerfile: ../docker-app/Dockerfile
       target: ${ENV:-prod}
-    networks:
-      - web
     volumes:
-      - /var/log/apache2:/var/log/apache2
       - type: bind
-        source: ${CV_PDF_PATH}
+        source: ${CV_PDF_PATH:? path du pdf manquant}
         target: /var/www/html/cv.pdf
         read_only: true
+    networks:
+      - web
     labels:
       env: ${ENV:-prod}
 
