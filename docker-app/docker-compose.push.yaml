@@ -1,0 +1,13 @@
+name: curriculum-dev
+
+services:
+  cv:
+    image: ghcr.io/vivien60/curriculum:latest
+    build:
+      context : ../app
+      dockerfile: ../docker-app/Dockerfile
+      target: prod
+      labels:
+        ## sur GitHub Packages, ghcr.io, rattache l'image au repo :
+        org.opencontainers.image.source: https://github.com/Vivien60/curriculum
+

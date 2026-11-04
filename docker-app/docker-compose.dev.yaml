@@ -2,8 +2,13 @@ name: curriculum-dev
 
 services:
   cv:
+    build:
+      context : ../app
+      dockerfile: ../docker-app/Dockerfile
+      target: ${ENV:-prod}
+      labels:
+        ## sur GitHub Packages, ghcr.io, rattache l'image au repo :
+        org.opencontainers.image.source: https://github.com/Vivien60/curriculum
     volumes:
       - ../app:/var/www/html
-    labels:
-      traefik.http.routers.cv.rule: "Host(`${LOCAL_DNS:? LOCAL_DNS manquant }`)"
 

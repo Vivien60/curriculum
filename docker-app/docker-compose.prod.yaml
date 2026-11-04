@@ -1,0 +1,12 @@
+name: curriculum
+
+services:
+  cv:
+    image: ghcr.io/vivien60/curriculum:latest
+    pull_policy: always
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/"]
+      interval: 10s
+      timeout: 3s
+      retries: 5

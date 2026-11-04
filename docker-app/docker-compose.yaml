@@ -2,10 +2,6 @@ name: curriculum
 
 services:
   cv:
-    build:
-      context : ../app
-      dockerfile: ../docker-app/Dockerfile
-      target: ${ENV:-prod}
     volumes:
       - type: bind
         source: ${CV_PDF_PATH:? path du pdf manquant}
@@ -15,6 +11,7 @@ services:
       - web
     labels:
       env: ${ENV:-prod}
+      traefik.http.routers.cv.rule: "Host(`${HOST:? HOST manquant }`)"
 
 networks:
   web:
