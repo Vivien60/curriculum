@@ -51,3 +51,13 @@
 # Embedded web-server pid file
 /.web-server-pid
 /cv.pdf
+/static/
+/.env.dev
+/storage/
+/.claude/
+/traefik/
+/.env.local
+
+
+.env.*.local
+.env.local

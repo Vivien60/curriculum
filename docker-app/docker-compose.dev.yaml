@@ -1,0 +1,9 @@
+name: curriculum-dev
+
+services:
+  cv:
+    volumes:
+      - ../app:/var/www/html
+    labels:
+      traefik.http.routers.cv.rule: "Host(`${LOCAL_DNS:? LOCAL_DNS manquant }`)"
+

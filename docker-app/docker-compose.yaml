@@ -1,0 +1,22 @@
+name: curriculum
+
+services:
+  cv:
+    build:
+      context : ../app
+      dockerfile: ../docker-app/Dockerfile
+      target: ${ENV:-prod}
+    volumes:
+      - type: bind
+        source: ${CV_PDF_PATH:? path du pdf manquant}
+        target: /var/www/html/cv.pdf
+        read_only: true
+    networks:
+      - web
+    labels:
+      env: ${ENV:-prod}
+
+networks:
+  web:
+    name: web
+    external: true
