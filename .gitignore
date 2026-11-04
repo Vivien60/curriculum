@@ -61,3 +61,5 @@
 
 .env.*.local
 .env.local
+/docker-app/Makefile
+/app/cv.pdf
