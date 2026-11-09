@@ -1,7 +1,6 @@
 FROM php:8.5-apache AS apache-php
 
 # PHP
-RUN apt-get update && apt-get upgrade -y
 COPY --from=mlocati/php-extension-installer:2 /usr/bin/install-php-extensions /usr/local/bin/
 RUN install-php-extensions gd zip
 

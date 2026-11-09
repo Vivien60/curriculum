@@ -1,7 +1,13 @@
+# docker-compose.yaml
+# Base commune à tous les environnements (réseau, volumes, labels Traefik).
+# À combiner avec un override : dev ou prod.
+
 name: curriculum
 
 services:
   cv:
+    security_opt:
+      - no-new-privileges:true
     volumes:
       - type: bind
         source: ${CV_PDF_PATH:? path du pdf manquant}

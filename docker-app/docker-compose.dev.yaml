@@ -1,3 +1,7 @@
+# docker-compose.dev.yaml
+# Override de dev : s'ajoute à docker-compose.yaml.
+# Build local et code monté en volume.
+
 name: curriculum-dev
 
 services:

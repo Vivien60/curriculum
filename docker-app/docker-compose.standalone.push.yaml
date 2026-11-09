@@ -1,3 +1,7 @@
+# docker-compose.standalone.push.yaml
+# Autonome : à utiliser seul, sans la base.
+# Build l'image de prod et la tague pour ghcr.io (le push se fait avec `docker compose push`).
+
 name: curriculum
 
 services:
