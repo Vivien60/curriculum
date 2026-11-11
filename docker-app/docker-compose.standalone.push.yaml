@@ -6,7 +6,7 @@ name: curriculum
 
 services:
   cv:
-    image: ghcr.io/vivien60/curriculum:latest
+    image: ghcr.io/vivien60/curriculum:${IMAGE_TAG:-latest}
     build:
       context : ../app
       dockerfile: ../docker-app/Dockerfile

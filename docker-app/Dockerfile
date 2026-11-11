@@ -18,3 +18,8 @@ FROM apache-php AS prod
 # php.ini de production : pas d'erreurs affichées, expose_php désactivé
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY ./ /var/www/html/
+# Code en lecture seule pour Apache (www-data) : propriétaire root, pas d'écriture
+# pour les autres. Retire aussi le 1777 (sticky + écriture pour tous) posé par l'image de base.
+RUN chown -R root:root /var/www/html \
+    && find /var/www/html -type d -exec chmod 755 {} + \
+    && find /var/www/html -type f -exec chmod 644 {} +
