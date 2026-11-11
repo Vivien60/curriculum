@@ -8,16 +8,25 @@ services:
   cv:
     security_opt:
       - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      # Apache démarre en root puis bascule sur www-data pour ses workers
+      - SETUID
+      - SETGID
     volumes:
       - type: bind
         source: ${CV_PDF_PATH:? path du pdf manquant}
         target: /var/www/html/cv.pdf
         read_only: true
+        bind:
+          create_host_path: false
     networks:
       - web
     labels:
       env: ${ENV:-prod}
       traefik.http.routers.cv.rule: "Host(`${HOST:? HOST manquant }`)"
+      traefik.enable: "true"
 
 networks:
   web:

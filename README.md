@@ -14,3 +14,10 @@
 ### Proxy traefik
 - A mettre dans la commande de lancement 
     ce volume ./certs:/etc/certs:ro
+
+### push et mise à jour de l'image sur le registre
+Depuis docker-app/ :
+docker compose -f docker-compose.standalone.push.yaml build --pull --no-cache
+docker compose -f docker-compose.standalone.push.yaml push
+Avec sha du commit : 
+GIT_SHA=$(git rev-parse HEAD) docker compose -f docker-compose.standalone.push.yaml build --pull --no-cache

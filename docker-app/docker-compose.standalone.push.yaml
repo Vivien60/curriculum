@@ -14,4 +14,4 @@ services:
       labels:
         ## sur GitHub Packages, ghcr.io, rattache l'image au repo :
         org.opencontainers.image.source: https://github.com/Vivien60/curriculum
-
+        org.opencontainers.image.revision: ${GIT_SHA:-unknown}
