@@ -1,3 +1,7 @@
+# docker-compose.prod.yaml
+# Override de prod : s'ajoute à docker-compose.yaml.
+# Utilise l'image publiée sur ghcr.io, avec healthcheck et restart.
+
 name: curriculum
 
 services:
@@ -10,3 +14,5 @@ services:
       interval: 10s
       timeout: 3s
       retries: 5
+      start_period: 40s
+      start_interval: 2s

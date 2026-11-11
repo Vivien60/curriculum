@@ -1,3 +1,7 @@
+# docker-compose.standalone.push.yaml
+# Autonome : à utiliser seul, sans la base.
+# Build l'image de prod et la tague pour ghcr.io (le push se fait avec `docker compose push`).
+
 name: curriculum
 
 services:
@@ -10,4 +14,4 @@ services:
       labels:
         ## sur GitHub Packages, ghcr.io, rattache l'image au repo :
         org.opencontainers.image.source: https://github.com/Vivien60/curriculum
-
+        org.opencontainers.image.revision: ${GIT_SHA:-unknown}
