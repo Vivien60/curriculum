@@ -7,6 +7,7 @@ name: curriculum
 services:
   cv:
     image: ghcr.io/vivien60/curriculum:${IMAGE_TAG:-latest}
+    pull_policy: always
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://localhost/"]
