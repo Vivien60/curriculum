@@ -4,7 +4,7 @@
 
 name: curriculum
 
-x-cv-pdf-target: &cv_pdf_target /var/www/html/cv.pdf
+x-container-storage-path: &container_storage_path "/srv/media"
 
 services:
   cv:
@@ -18,8 +18,8 @@ services:
       - SETGID
     volumes:
       - type: bind
-        source: ${CV_PDF_PATH:? path du pdf manquant}
-        target: *cv_pdf_target
+        source: ${HOST_STORAGE_PATH}
+        target: *container_storage_path
         read_only: true
         bind:
           # empêche Docker de créer un dossier si le fichier n'existe pas :
@@ -32,7 +32,7 @@ services:
       traefik.http.routers.cv.rule: "Host(`${HOST:? HOST manquant }`)"
       traefik.enable: "true"
     environment:
-      CV_PDF_PATH: *cv_pdf_target
+      MEDIA_PATH: *container_storage_path
 
 networks:
   web:
