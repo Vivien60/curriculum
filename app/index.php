@@ -1,6 +1,6 @@
 <?php
 //header('Location: cv.pdf');
-$filepath = getenv('CV_PDF_PATH');
+$filepath = getenv('MEDIA_PATH').'/cv.pdf';
 header('Content-Description: File Transfer');
 header('Content-Type: application/pdf');
 header('Content-Disposition: inline; filename="cv.pdf"');
