@@ -30,3 +30,7 @@ Avec sha du commit et le tag de la version :
 read -rp "Version : " IMAGE_TAG && export IMAGE_TAG GIT_SHA=$(git rev-parse HEAD) \
 && docker compose -f docker-compose.standalone.push.yaml build --pull --no-cache \
 && docker compose -f docker-compose.standalone.push.yaml push
+
+Publication du compose :
+read -rp "Version : " IMAGE_TAG && export IMAGE_TAG \
+&& docker compose --env-file .env.prod publish ghcr.io/vivien60/curriculum-compose:init
