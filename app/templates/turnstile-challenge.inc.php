@@ -14,6 +14,8 @@ return static function (string $siteKey, ?string $message): string {
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
+<h1>Vérification de sécurité en cours</h1>
+<p>Ce site utilise un service de sécurité pour se protéger contre les robots malveillants. Cette page s'affiche pendant que la vérification a lieu, merci de patienter quelques instants.</p>
 $msg
 <form id="challenge" method="post">
     <div class="cf-turnstile" data-sitekey="$key" data-callback="onVerified"></div>
