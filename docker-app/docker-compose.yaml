@@ -33,14 +33,14 @@ services:
       traefik.enable: "true"
     environment:
       MEDIA_PATH: *container_storage_path
-      BOT_CHECK_SITE_KEY: ${TURNSTILE_SITE_KEY:? TURNSTILE_SITE_KEY manquant }
+      BOT_CHECK_SITE_KEY: ${BOT_CHECK_SITE_KEY:? BOT_CHECK_SITE_KEY manquant }
     secrets:
-      # monté dans le conteneur sous /run/secrets/turnstile_secret_key
-      - turnstile_secret_key
+      # monté dans le conteneur sous /run/secrets/bot_check_secret
+      - bot_check_secret
 
 secrets:
-  turnstile_secret_key:
-    file: ${TURNSTILE_SECRET_FILE:? TURNSTILE_SECRET_FILE manquant }
+  bot_check_secret:
+    file: ${HOST_BOT_CHECK_SECRET_FILE:? HOST_BOT_CHECK_SECRET_FILE manquant }
 
 networks:
   web:

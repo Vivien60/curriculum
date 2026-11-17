@@ -33,4 +33,4 @@ read -rp "Version : " IMAGE_TAG && export IMAGE_TAG GIT_SHA=$(git rev-parse HEAD
 
 Publication du compose :
 read -rp "Version : " IMAGE_TAG && export IMAGE_TAG \
-&& docker compose --env-file .env.prod publish ghcr.io/vivien60/curriculum-compose:init
+&& docker compose --env-file .env.prod publish ghcr.io/vivien60/curriculum-compose:robot-check
