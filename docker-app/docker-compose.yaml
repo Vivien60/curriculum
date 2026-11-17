@@ -1,17 +1,46 @@
+# docker-compose.yaml
+# Base commune à tous les environnements (réseau, volumes, labels Traefik).
+# À combiner avec un override : dev ou prod.
+
 name: curriculum
+
+x-container-storage-path: &container_storage_path "/srv/media"
 
 services:
   cv:
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      # Apache démarre en root puis bascule sur www-data pour ses workers
+      - SETUID
+      - SETGID
     volumes:
       - type: bind
-        source: ${CV_PDF_PATH:? path du pdf manquant}
-        target: /var/www/html/cv.pdf
+        source: ${HOST_STORAGE_PATH}
+        target: *container_storage_path
         read_only: true
+        bind:
+          # empêche Docker de créer un dossier si le fichier n'existe pas :
+          # en effet, le comportement par défaut de Docker est de créer un dossier si le fichier n'existe pas
+          create_host_path: false
     networks:
       - web
     labels:
       env: ${ENV:-prod}
       traefik.http.routers.cv.rule: "Host(`${HOST:? HOST manquant }`)"
+      traefik.enable: "true"
+    environment:
+      MEDIA_PATH: *container_storage_path
+      BOT_CHECK_SITE_KEY: ${BOT_CHECK_SITE_KEY:? BOT_CHECK_SITE_KEY manquant }
+    secrets:
+      # monté dans le conteneur sous /run/secrets/bot_check_secret
+      - bot_check_secret
+
+secrets:
+  bot_check_secret:
+    file: ${HOST_BOT_CHECK_SECRET_FILE:? HOST_BOT_CHECK_SECRET_FILE manquant }
 
 networks:
   web:
